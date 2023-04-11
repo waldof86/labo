@@ -37,7 +37,7 @@ graficar_campo  <- function( campo )
   lines(densidad_B, col="red", lty=2)
   
   legend(  "topright",  
-           legend=c("202001", "202003"),
+           legend=c("202007", "202009"),
            col=c("blue", "red"), lty=c(1,2))
 
 }
