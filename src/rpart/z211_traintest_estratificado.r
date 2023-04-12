@@ -8,12 +8,11 @@ require("rpart")
 #particionar agrega una columna llamada fold a un dataset que consiste en una particion estratificada segun agrupa
 # particionar( data=dataset, division=c(70,30), agrupa=clase_ternaria, seed=semilla)   crea una particion 70, 30 
 
-particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, seed=NA )
+particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, seed=NA)
 {
   if( !is.na(seed) )   set.seed( seed )
 
   bloque  <- unlist( mapply(  function(x,y) { rep( y, x )} ,   division,  seq( from=start, length.out=length(division) )  ) )  
-
   data[ , (campo) :=  sample( rep( bloque, ceiling(.N/length(bloque))) )[1:.N],
           by= agrupa ]
 }
@@ -21,18 +20,20 @@ particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, se
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("X:\\gdrive\\austral2023v\\")   #Establezco el Working Directory
+setwd("D:\\Onedrive\\Austral\\Cursos\\08 - Laboratorio de Implementacion 1\\labo2023v\\src\\rpart")   #Establezco el Working Directory
+getwd()
 
 #cargo los datos
 dataset  <- fread("./datasets/dataset_pequeno.csv")
+nrow(dataset)
 
 #trabajo solo con los datos con clase, es decir 202107
 dataset  <- dataset[ clase_ternaria!= "" ]
+nrow(dataset)
 
 #particiono estratificadamente el dataset
 #Cambiar por la primer semilla de cada uno !
-particionar( dataset, division=c(7,3), agrupa="clase_ternaria", seed= 102191 )  #Cambiar por la primer semilla de cada uno !
-
+particionar( data=dataset, division=c(7,3), agrupa="clase_ternaria", seed= 600167 )  #Cambiar por la primer semilla de cada uno !
 
 param_basicos  <- list( "cp"=         -1,  #complejidad minima
                         "minsplit"=  400,  #minima cantidad de registros en un nodo para hacer el split
@@ -77,4 +78,3 @@ cat( "Estimulos: ", estimulos, "\n" )
 cat( "Aciertos (BAJA+2): ",  aciertos,  "\n" )
 
 cat( "Ganancia en testing (normalizada): ", ganancia_test_normalizada, "\n" )
-
