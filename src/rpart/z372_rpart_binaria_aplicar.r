@@ -24,10 +24,10 @@ PARAM$input$dataset       <- "./datasets/dataset_pequeno.csv"
 PARAM$input$training      <- c( 202107 )  # los meses en los que vamos a entrenar
 PARAM$input$future        <- c( 202109 )  #meses donde se aplica el modelo
 
-PARAM$rpart$cp         <-  -0.2618881869
-PARAM$rpart$minsplit   <- 215.661244913
-PARAM$rpart$minbucket  <-   9.8589051183
-PARAM$rpart$mixdepth   <-   8
+PARAM$rpart$cp         <-  -0.516654369042648
+PARAM$rpart$minsplit   <- 1110.389478
+PARAM$rpart$minbucket  <-   3.46049273699797
+PARAM$rpart$mixdepth   <-   12
 
 
 #------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ dfinal[ , prob_SI := prediccion[ , "SI"] ]
 
 # por favor cambiar por una semilla propia
 # que sino el Fiscal General va a impugnar la prediccion
-set.seed(102191)  
+set.seed(262139)  
 dfinal[ , azar := runif( nrow(dapply) ) ]
 
 # ordeno en forma descentente, y cuando coincide la probabilidad, al azar
