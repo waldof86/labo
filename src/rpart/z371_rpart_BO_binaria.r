@@ -32,7 +32,7 @@ PARAM$experimento  <- 'HT3710'
 
 PARAM$dataset  <- "./datasets/dataset_pequeno.csv"
 PARAM$training_meses  <- c(202107)  #los meses en los que entreno, TODOS deben tener la clase completa
-PARAM$semillas  <- c(102191)    #Mas de una semilla cambia el  1-Repeated
+PARAM$semillas  <- c(262139)    #Mas de una semilla cambia el  1-Repeated
 PARAM$crossvalidation  <- 5     #cantidad de folds del cross validation
 PARAM$BO$iteraciones  <- 150    #cantidad de iteraciones de la optimizacin bayesiana
 
