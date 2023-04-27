@@ -28,7 +28,7 @@ PARAM$train$testing      <- c( 202107 )
 
 PARAM$train$undersampling  <- 1.0   # 1.0 significa NO undersampling ,  0.1  es quedarse con el 10% de los CONTINUA
 
-PARAM$train$semilla  <- 102191
+PARAM$train$semilla  <- 262139
 # FIN Parametros del script
 
 
