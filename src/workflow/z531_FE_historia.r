@@ -54,7 +54,7 @@ PARAM$RandomForest$max.depth  <-  5
 PARAM$RandomForest$min.node.size  <- 500
 PARAM$RandomForest$mtry  <- 15
 
-PARAM$CanaritosAsesinos  <- 10
+PARAM$CanaritosAsesinos  <- 2
 # FIN Parametros del script
 
 #------------------------------------------------------------------------------
