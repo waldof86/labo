@@ -50,11 +50,11 @@ PARAM$Tendencias2$ratiomax  <- FALSE
 
 PARAM$RandomForest$run  <- FALSE
 PARAM$RandomForest$num.trees  <- 40
-PARAM$RandomForest$max.depth  <-  4
+PARAM$RandomForest$max.depth  <-  5
 PARAM$RandomForest$min.node.size  <- 500
 PARAM$RandomForest$mtry  <- 15
 
-PARAM$CanaritosAsesinos  <- 40
+PARAM$CanaritosAsesinos  <- 0
 # FIN Parametros del script
 
 #------------------------------------------------------------------------------
@@ -75,34 +75,26 @@ cppFunction('NumericVector fhistC(NumericVector pcolumna, IntegerVector pdesde )
   /* Aqui se cargan los valores para la regresion */
   double  x[100] ;
   double  y[100] ;
-
   int n = pcolumna.size();
   NumericVector out( 5*n );
-
   for(int i = 0; i < n; i++)
   {
     //lag
     if( pdesde[i]-1 < i )  out[ i + 4*n ]  =  pcolumna[i-1] ;
     else                   out[ i + 4*n ]  =  NA_REAL ;
-
-
     int  libre    = 0 ;
     int  xvalor   = 1 ;
-
     for( int j= pdesde[i]-1;  j<=i; j++ )
     {
        double a = pcolumna[j] ;
-
        if( !R_IsNA( a ) ) 
        {
           y[ libre ]= a ;
           x[ libre ]= xvalor ;
           libre++ ;
        }
-
        xvalor++ ;
     }
-
     /* Si hay al menos dos valores */
     if( libre > 1 )
     {
@@ -112,18 +104,15 @@ cppFunction('NumericVector fhistC(NumericVector pcolumna, IntegerVector pdesde )
       double  xxsum = xsum * xsum ;
       double  vmin  = y[0] ;
       double  vmax  = y[0] ;
-
       for( int h=1; h<libre; h++)
       { 
         xsum  += x[h] ;
         ysum  += y[h] ; 
         xysum += x[h]*y[h] ;
         xxsum += x[h]*x[h] ;
-
         if( y[h] < vmin )  vmin = y[h] ;
         if( y[h] > vmax )  vmax = y[h] ;
       }
-
       out[ i ]  =  (libre*xysum - xsum*ysum)/(libre*xxsum -xsum*xsum) ;
       out[ i + n ]    =  vmin ;
       out[ i + 2*n ]  =  vmax ;
@@ -137,7 +126,6 @@ cppFunction('NumericVector fhistC(NumericVector pcolumna, IntegerVector pdesde )
       out[ i + 3*n ]  =  NA_REAL ;
     }
   }
-
   return  out;
 }')
 
