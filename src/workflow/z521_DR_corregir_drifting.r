@@ -21,7 +21,7 @@ PARAM$exp_input  <- "CA5110"
 
 PARAM$variables_intrames  <- FALSE
 #valores posibles  "ninguno" "rank_simple" , "rank_cero_fijo" , "deflacion"
-PARAM$metodo  <- "rank_cero_fijo"
+PARAM$metodo  <- "deflacion"
 # FIN Parametros del script
 
 
