@@ -5,7 +5,7 @@ gc()             #garbage collection
 require("data.table")
 require("rpart")
 
-setwd("X:\\gdrive\\austral2023v\\" )  #establezco la carpeta donde voy a trabajar
+setwd(".\\" )  #establezco la carpeta donde voy a trabajar
 #cargo el dataset
 dataset  <- fread( "./datasets/dataset_pequeno.csv")
 

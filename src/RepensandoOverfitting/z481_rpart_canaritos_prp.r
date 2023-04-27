@@ -6,8 +6,7 @@ require("data.table")
 require("rpart")
 require("rpart.plot")
 
-setwd("X:\\gdrive\\austral2023v\\" )  #establezco la carpeta donde voy a trabajar
-
+setwd("D:\\Onedrive\\Austral\\Cursos\\08 - Laboratorio de Implementacion 1\\labo2023v\\src\\RepensandoOverfitting" )  #establezco la carpeta donde voy a trabajar
 #cargo el dataset
 dataset  <- fread( "./datasets/dataset_pequeno.csv")
 
