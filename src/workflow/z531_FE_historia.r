@@ -26,7 +26,7 @@ PARAM$experimento <- "FE5310"
 PARAM$exp_input  <- "DR5210"
 
 PARAM$lag1  <- TRUE
-PARAM$lag2  <- FALSE
+PARAM$lag2  <- TRUE
 PARAM$lag3  <- FALSE
 
 PARAM$Tendencias1$run  <- TRUE
@@ -48,13 +48,13 @@ PARAM$Tendencias2$ratioavg  <- FALSE
 PARAM$Tendencias2$ratiomax  <- FALSE
 
 
-PARAM$RandomForest$run  <- FALSE
+PARAM$RandomForest$run  <- TRUE
 PARAM$RandomForest$num.trees  <- 40
-PARAM$RandomForest$max.depth  <-  5
+PARAM$RandomForest$max.depth  <-  4
 PARAM$RandomForest$min.node.size  <- 500
 PARAM$RandomForest$mtry  <- 15
 
-PARAM$CanaritosAsesinos  <- 0
+PARAM$CanaritosAsesinos  <- 20
 # FIN Parametros del script
 
 #------------------------------------------------------------------------------
