@@ -1,0 +1,33 @@
+experimento: FE5310
+exp_input: DR5210
+lag1: yes
+lag2: yes
+lag3: no
+Tendencias1:
+  run: yes
+  ventana: 6.0
+  tendencia: yes
+  minimo: no
+  maximo: no
+  promedio: no
+  ratioavg: no
+  ratiomax: no
+Tendencias2:
+  run: no
+  ventana: 6.0
+  tendencia: yes
+  minimo: no
+  maximo: no
+  promedio: no
+  ratioavg: no
+  ratiomax: no
+RandomForest:
+  run: no
+  num.trees: 40.0
+  max.depth: 5.0
+  min.node.size: 500.0
+  mtry: 15.0
+CanaritosAsesinos: 2.0
+stat:
+  time_start: 20230427 202055
+  time_end: 20230427 204144

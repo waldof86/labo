@@ -1,0 +1,10 @@
+experimento: ZZ5910
+exp_input: HT5510
+modelos: 8.0
+semilla: 262139.0
+envios_desde: 7000.0
+envios_hasta: 13000.0
+envios_salto: 500.0
+stat:
+  time_start: 20230428 105158
+  time_end: 20230428 111802

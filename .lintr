@@ -1,0 +1,7 @@
+linters: linters_with_defaults() # see vignette("lintr")
+encoding: "UTF-8"
+"r.lintr.enabled": false
+linters: linters_with_defaults(
+    line_length_linter = line_length_linter(120L),
+    no_tab_linter = NULL
+  )
