@@ -483,3 +483,14 @@ write_yaml( PARAM, file= "parametros.yml" )   #escribo parametros utilizados
 cat( format(Sys.time(), "%Y%m%d %H%M%S"),"\n",
      file= "zRend.txt",
      append= TRUE  )
+#------------------------------------------------------------------------------
+#suicidio,  elimina la maquina virtual directamente
+# para no tener que esperar a que termine una Bayesian Optimization 
+# sino Google me sigue facturando a pesar de no estar procesando nada
+# Give them nothing, but take from them everything.
+
+system( "sleep 10  && 
+        export NAME=$(curl -X GET http://metadata.google.internal/computeMetadata/v1/instance/name -H 'Metadata-Flavor: Google') &&
+        export ZONE=$(curl -X GET http://metadata.google.internal/computeMetadata/v1/instance/zone -H 'Metadata-Flavor: Google') &&
+        gcloud --quiet compute instances delete $NAME --zone=$ZONE",
+        wait=FALSE )
