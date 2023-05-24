@@ -1,3 +1,8 @@
+#WAL
+#cambios al Script
+#   *Agregar los 4 set de variables manuales que inventamos en nuestro propio exp colaborativo
+#   *cambie metodo de rank_cero_fijo a ninguno de acuerdo a las conclusiones del experimento colaborativo
+
 # Experimentos Colaborativos Default
 # Workflow  Data Drifting repair
 
@@ -23,7 +28,7 @@ PARAM$exp_input  <- "WAL_CA_01"
 PARAM$variables_intrames  <- TRUE   # atencion esto esta en TRUE
 
 #valores posibles  "ninguno" "rank_simple" , "rank_cero_fijo" , "deflacion"
-PARAM$metodo  <- "rank_cero_fijo"
+PARAM$metodo  <- "ninguno"
 
 PARAM$home  <- "~/buckets/b1/"
 # FIN Parametros del script
@@ -119,7 +124,102 @@ AgregarVariables_IntraMes  <- function( dataset )
   dataset[ , vmr_mconsumototal       := vm_mconsumototal  / vm_mlimitecompra ]
   dataset[ , vmr_mpagominimo         := vm_mpagominimo  / vm_mlimitecompra ]
 
-  #Aqui debe usted agregar sus propias nuevas variables
+  #variables propias set de los experimentadores
+   dataset[ , fm_consultas_vs_callcenter    := ccajas_consultas/ccallcenter_transacciones]
+   dataset[ , fm_flujo_vs_capital           := (mtransferencias_recibidas - ctransferencias_emitidas)  / mcuentas_saldo ]
+   dataset[ , fm_desc_tarj                  := (mtarjeta_visa_descuentos+mtarjeta_master_descuentos)/(mtarjeta_master_consumo+mtarjeta_visa_consumo)]
+   dataset[ , fm_tarj_payr                  := (mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll]
+   dataset[ , fm_trans_ctarj                := (ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master)]
+   dataset[ , fm_cdel                       := log(1+Master_delinquency+Visa_delinquency)]
+   dataset[ , fm_pago_trec                  := cpagomiscuentas+(ctransferencias_recibidas^2)]
+   dataset[ , fm_ant__edad                  := cliente_antiguedad/cliente_edad]
+   dataset[ , fm_saldo_sueldo               := (Visa_msaldototal+Master_msaldototal)/mpayroll]
+   dataset[ , fm_ind1                       := cliente_edad*(mtarjeta_visa_consumo+mtarjeta_master_consumo)/mpayroll]
+   dataset[ , fm_ind2                       := cliente_edad*(mautoservicio)/mpayroll]
+   dataset[ , fm_prop_ad                    := (mcuenta_corriente_adicional+mcaja_ahorro_adicional)/(mcuenta_corriente_adicional+mcuenta_corriente+mcaja_ahorro+mcaja_ahorro_adicional)]
+   dataset[ , fm_rat_hb                     := (chomebanking_transacciones+cmobile_app_trx)/(chomebanking_transacciones+cmobile_app_trx+ccajas_transacciones+ccallcenter_transacciones)]
+   dataset[ , fm_ad_saldo                   := (Master_madelantopesos+Master_madelantodolares+Visa_madelantopesos+Visa_madelantodolares)/mcuentas_saldo]
+   dataset[ , fm_rat_deb                    := mautoservicio/ctarjeta_debito_transacciones]
+   dataset[ , fm_rat_visa                   := mtarjeta_visa_consumo/ctarjeta_visa_transacciones]
+   dataset[ , fm_rat_master                 := mtarjeta_master_consumo/ctarjeta_master_transacciones]
+   dataset[ , fm_rat_pmc                    := mpagomiscuentas/mpagodeservicios]
+   dataset[ , fm_visa_desc                  := mtarjeta_visa_descuentos/mtarjeta_visa_consumo]
+   dataset[ , fm_master_desc                := mtarjeta_master_descuentos/mtarjeta_master_consumo]
+   dataset[ , fm_desc_com                   := (mcajeros_propios_descuentos+mtarjeta_visa_descuentos+mtarjeta_master_descuentos)/(mcomisiones_mantenimiento+mcomisiones_otras)]
+   dataset[ , fm_cons_saldo                 := (mtarjeta_master_consumo+mtarjeta_visa_consumo)/(Visa_msaldototal+Master_msaldototal)]
+   dataset[ , fm_lim_sueldo                 := (Master_mlimitecompra+Visa_mlimitecompra)/mpayroll]
+   dataset[ , fm_limfin_sueldo              := (Master_mfinanciacion_limite+Visa_mfinanciacion_limite)/mpayroll]
+   dataset[ , fm_pago_saldo                 := (Visa_mpagado+Master_mpagado)/(Visa_msaldototal+Master_msaldototal)]
+   dataset[ , fm_cconsultas                 := log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones)]
+   dataset[ , fm_ind3                       := (ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2]
+   dataset[ , fm_ind4                       := (ctrx_quarter*((mtarjeta_visa_descuentos+mtarjeta_master_descuentos+mcajeros_propios_descuentos))/(mcomisiones_mantenimiento+mcomisiones_otras)^2)]
+   dataset[ , fm_eftarj                     := (cextraccion_autoservicio+ccajas_extracciones)/(ctarjeta_visa_transacciones+ctarjeta_master_transacciones)]
+   dataset[ , fm_mcauto                     := mcuenta_debitos_automaticos/ccuenta_debitos_automaticos]
+  
+  #Variables propias set de los revisores
+   dataset[ , fm_deuda_inv      := (mplazo_fijo_dolares+mplazo_fijo_pesos+minversion1_pesos+minversion1_dolares+minversion2)/(mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)]
+   dataset[ , fm_cprestamos     := log(1+cprestamos_hipotecarios+cprestamos_prendarios)]
+   dataset[ , fm_cinv           := log(1+cinversion1+cinversion2)]
+   dataset[ , fm_cinv2          := log(1+cplazo_fijo+cinversion1+cinversion2)]
+   dataset[ , fm_cseg_cinv      := (cseguro_vida+cseguro_auto+cseguro_vivienda+cseguro_accidentes_personales+ccaja_seguridad/5)+(cinversion1+cinversion2/2)^2]
+   dataset[ , fm_prop_pp        := mprestamos_personales/(mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)]
+   dataset[ , fm_prop_p         := mprestamos_prendarios/(mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)]
+   dataset[ , fm_prop_h         := mprestamos_hipotecarios/(mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)]
+   dataset[ , fm_prop_inv1      := minversion1_pesos/(minversion1_pesos+minversion2)]
+   dataset[ , fm_prop_inv2      := minversion2/(minversion1_pesos+minversion2)]
+   dataset[ , fm_deb_sueldo     := (mautoservicio)/mpayroll]
+   dataset[ , fm_chr_saldo      := (ccheques_emitidos_rechazados/mcuentas_saldo)]
+   dataset[ , fm_com_sueldo     := (mcomisiones+mcomisiones_otras)/mpayroll]
+   dataset[ , fm_cuenta_sueldo  := (ccuenta_corriente+ccaja_ahorro)/mpayroll]
+   dataset[ , fm_sueldo_tot     := mpayroll2/(mpayroll+mpayroll2)]
+   dataset[ , fm_auto_sueldo    := mcuenta_debitos_automaticos/mpayroll]
+   dataset[ , fm_tot_deb        := (mcuenta_debitos_automaticos+mpagodeservicios)/mpayroll]
+   dataset[ , fm_desc_sueldo    := (mcajeros_propios_descuentos+mtarjeta_visa_descuentos+mtarjeta_master_descuentos)/mpayroll]
+   dataset[ , fm_caj_desc       := mcajeros_propios_descuentos/mautoservicio]
+   dataset[ , fm_ind_ahorro     := mforex_buy/mpayroll]
+   dataset[ , fm_inv_tot        := (mplazo_fijo_dolares+mplazo_fijo_pesos+minversion1_pesos+minversion1_dolares+minversion2)/mpayroll]
+   dataset[ , fm_pf_sueldo      := (mplazo_fijo_dolares+mplazo_fijo_pesos)/mpayroll]
+   dataset[ , fm_inv_sueldo     := (minversion1_pesos+minversion1_dolares+minversion2)/mpayroll]
+   dataset[ , fm_pres_sueldo    := (mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)/mpayroll]
+   dataset[ , fm_ef_flujo       := mextraccion_autoservicio/(mtransferencias_recibidas+mcheques_depositados)]
+   dataset[ , fm_rat_rech       := ccheques_emitidos_rechazados/ccheques_emitidos]
+   dataset[ , fm_sueldo_acr     := mpayroll/cpayroll_trx]
+   dataset[ , fm_ctransemp      := log(1+cpayroll_trx+cpayroll2_trx)]
+   dataset[ , fm_indeu          := ((mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)*(mforex_sell)^2)/mpayroll]
+   dataset[ , fm_indeu2         := ((mprestamos_personales+mprestamos_prendarios+mprestamos_hipotecarios)*(mforex_sell)^2)/(mpayroll+mplazo_fijo_dolares+mplazo_fijo_pesos+minversion1_pesos+minversion1_dolares+minversion2)]
+
+  #Variables propias combinadas, set experimentadores
+   dataset[ , exp_tarjp_rvisa           := ((mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll)*(mtarjeta_visa_consumo/ctarjeta_visa_transacciones)]
+   dataset[ , exp_tarjp_mcauto          := ((mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll)*(mcuenta_debitos_automaticos/ccuenta_debitos_automaticos) ]
+   dataset[ , exp_tarjp_ind3            := ((mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll)*((ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2)]
+   dataset[ , exp_tarjp_consultas       := ((mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll)*(log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones))]
+   dataset[ , exp_tarjp_transtarj       := ((mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll)*((ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master))]
+   dataset[ , exp_tarjp_limsueldo       := ((mtarjeta_master_consumo+mtarjeta_visa_consumo)/mpayroll)*((Master_mlimitecompra+Visa_mlimitecompra)/mpayroll)]
+   dataset[ , exp_rvisa_mcauto          := (mtarjeta_visa_consumo/ctarjeta_visa_transacciones)*(mcuenta_debitos_automaticos/ccuenta_debitos_automaticos)]
+   dataset[ , exp_rvisa_ind3            := (mtarjeta_visa_consumo/ctarjeta_visa_transacciones)*((ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2)]
+   dataset[ , exp_rvisa_consultas       := (mtarjeta_visa_consumo/ctarjeta_visa_transacciones)*(log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones))]
+   dataset[ , exp_rvisa_transtarj       := (mtarjeta_visa_consumo/ctarjeta_visa_transacciones)*((ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master))]
+   dataset[ , exp_rvisa_limsueldo       := (mtarjeta_visa_consumo/ctarjeta_visa_transacciones)*((Master_mlimitecompra+Visa_mlimitecompra)/mpayroll)]
+   dataset[ , exp_mcauto_ind3           := (mcuenta_debitos_automaticos/ccuenta_debitos_automaticos)*((ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2)]
+   dataset[ , exp_mcauto_consultas      := (mcuenta_debitos_automaticos/ccuenta_debitos_automaticos)*(log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones))]
+   dataset[ , exp_mcauto_transtarj      := (mcuenta_debitos_automaticos/ccuenta_debitos_automaticos)*((ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master))]
+   dataset[ , exp_mcauto_limsueldo      := (mcuenta_debitos_automaticos/ccuenta_debitos_automaticos)*((Master_mlimitecompra+Visa_mlimitecompra)/mpayroll)]
+   dataset[ , exp_ind3_consultas        := ((ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2)*(log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones))]
+   dataset[ , exp_ind3_transtarj        := ((ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2)*((ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master))]
+   dataset[ , exp_ind3_limsueldo        := ((ctrx_quarter*cliente_antiguedad)/(mcomisiones_mantenimiento+mcomisiones_otras)^2)*((Master_mlimitecompra+Visa_mlimitecompra)/mpayroll)]
+   dataset[ , exp_consultas_transtarj   := (log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones))*((ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master))]
+   dataset[ , exp_consultas_limsueldo   := (log(1+ccajas_otras+ccajas_consultas+ccallcenter_transacciones))*((Master_mlimitecompra+Visa_mlimitecompra)/mpayroll)]
+   dataset[ , exp_transtarj_limsueldo   := ((ctarjeta_debito_transacciones+ctarjeta_visa_transacciones+ctarjeta_master_transacciones)/(ctarjeta_debito+ctarjeta_visa+ctarjeta_master))*((Master_mlimitecompra+Visa_mlimitecompra)/mpayroll)]
+
+  #Variables propias combinadas, set revisores
+   dataset[ , fm_cacr_suel      := fm_sueldo_acr*fm_cuenta_sueldo]
+   dataset[ , fm_cacr_pres      := fm_sueldo_acr*fm_pres_sueldo]
+   dataset[ , fm_cs_pres        := fm_cuenta_sueldo*fm_pres_sueldo]
+   dataset[ , fm_mix            := fm_sueldo_acr*fm_pres_sueldo*fm_cuenta_sueldo]
+   dataset[ , fm_cacr_suel2     := fm_sueldo_acr*(fm_cuenta_sueldo)^2]
+   dataset[ , fm_cs_pres2       := (fm_cuenta_sueldo)^2*fm_pres_sueldo]
+   dataset[ , fm_mix2           := fm_sueldo_acr*fm_pres_sueldo*(fm_cuenta_sueldo)^2]
+
 
   #valvula de seguridad para evitar valores infinitos
   #paso los infinitos a NULOS

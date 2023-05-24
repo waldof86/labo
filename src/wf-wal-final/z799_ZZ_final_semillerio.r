@@ -1,3 +1,9 @@
+#WAL
+#cambios al Script
+#   *mi semilla en linea 33 (262139)
+#   *60 semillas, un poco mas que el default
+#   *elijo el rank 1 y 2 de la bayesiana
+
 # Experimentos Colaborativos Default
 # ZZ con semillerio
 
@@ -24,9 +30,9 @@ PARAM$experimento  <- "WAL_ZZ_01"
 PARAM$exp_input  <- "WAL_HT_01"
 
 #Atencion, que cada modelos se procesa con 5 semillas, ajuste a SUS necesidades
-PARAM$modelos_rank  <- c( 1 )  #Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
-PARAM$semillerio  <- 20   # cantidad de semillas a utilizar en el semillerio, podrian ser 50 o 100 para mayor estabilidad
-PARAM$semilla_primos  <- 102191  # se utiliza para generar el vector de  PARAM$semillerio  semillas
+PARAM$modelos_rank  <- c(1, 2 )  #Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
+PARAM$semillerio  <- 60   # cantidad de semillas a utilizar en el semillerio, podrian ser 50 o 100 para mayor estabilidad
+PARAM$semilla_primos  <- 262139  # se utiliza para generar el vector de  PARAM$semillerio  semillas
 
 PARAM$kaggle$envios_desde  <-  8000L
 PARAM$kaggle$envios_hasta  <- 13500L

@@ -1,3 +1,8 @@
+#WAL
+#cambios al Script
+#   *NINGUNO
+#       deje machine learning de acuerdo a las conclusiones del experimento colaborativo
+
 # Experimentos Colaborativos Default
 # Workflow  Catastrophe Analysis
 

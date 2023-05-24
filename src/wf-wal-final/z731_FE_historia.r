@@ -1,3 +1,9 @@
+#WAL
+#cambios al Script
+#    *canaritos asesinos en 0.3 de acuerdo al experimento colaborativo
+#    *desvios de canaritos en 0 de acuerdo a nuestro propio experimento colaborativo
+#    *mi semilla en linea 63 (262139)
+
 # Experimentos Colaborativos Default
 # Workflow  Feature Engineering historico
 
@@ -54,10 +60,10 @@ PARAM$RandomForest$num.trees  <- 20
 PARAM$RandomForest$max.depth  <-  4
 PARAM$RandomForest$min.node.size  <- 1000
 PARAM$RandomForest$mtry  <- 40
-PARAM$RandomForest$semilla  <- 102191    # cambiar por la propia semilla
+PARAM$RandomForest$semilla  <- 262139    # cambiar por la propia semilla
 
-PARAM$CanaritosAsesinos$ratio  <- 0.0        #varia de 0.0 a 2.0, si es 0.0 NO se activan
-PARAM$CanaritosAsesinos$desvios  <- 4.0      #desvios estandar de la media, para el cutoff
+PARAM$CanaritosAsesinos$ratio  <- 0.3        #varia de 0.0 a 2.0, si es 0.0 NO se activan
+PARAM$CanaritosAsesinos$desvios  <- 1.0      #desvios estandar de la media, para el cutoff
 PARAM$CanaritosAsesinos$semilla  <- 200177   # cambiar por la propia semilla
 
 PARAM$home  <- "~/buckets/b1/"

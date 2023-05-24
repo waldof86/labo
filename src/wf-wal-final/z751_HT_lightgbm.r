@@ -1,3 +1,8 @@
+#WAL
+#cambios al Script
+#   *mi semilla en linea 44 (262139)
+#   *preferí no optimizar los lambdas, en parte porque prefiero usar el tiempo extra en mas semillas del semillerio
+
 # Experimentos Colaborativos Default
 # Hyperparameter Tuning  lightgbm
 
@@ -37,7 +42,7 @@ PARAM$exp_input  <- "WAL_TS_01"
 
 PARAM$lgb_crossvalidation_folds  <- 5  #En caso que se haga cross validation, se usa esta cantidad de folds
 
-PARAM$lgb_semilla  <- 102191   #cambiar por su propia semilla
+PARAM$lgb_semilla  <- 262139   #cambiar por su propia semilla
 
 
 #Hiperparametros FIJOS de  lightgbm
