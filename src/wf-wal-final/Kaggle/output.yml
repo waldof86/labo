@@ -16,6 +16,7 @@ PARAM:
   home: ~/buckets/b1/
 time:
   start: 20230524 182549
+  end: 20230524 205948
 status:
   modelo_rank: 2.0
-  sem: 2
+  sem: 60

@@ -1,0 +1,21 @@
+PARAM:
+  experimento: WAL_ZZ_02_J
+  exp_input: WAL_HT_02_J
+  modelos_rank:
+  - 1.0
+  - 2.0
+  semillerio: 30.0
+  semilla_primos: 262139.0
+  kaggle:
+    envios_desde: 8000
+    envios_hasta: 13500
+    envios_salto: 500
+  graficar:
+    envios_hasta: 20000
+    ventana_suavizado: 2001
+  home: ~/buckets/b1/
+time:
+  start: 20230525 102226
+status:
+  modelo_rank: 2.0
+  sem: 1
