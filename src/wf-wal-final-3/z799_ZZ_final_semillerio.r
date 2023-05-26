@@ -30,7 +30,7 @@ PARAM$experimento  <- "WAL_ZZ_03"
 PARAM$exp_input  <- "WAL_HT_03"
 
 #Atencion, que cada modelos se procesa con 5 semillas, ajuste a SUS necesidades
-PARAM$modelos_rank  <- c(6 )  #Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
+PARAM$modelos_rank  <- c(1,2,3,4,5,6,7,8,9,10)  #Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
 PARAM$semillerio  <- 30   # cantidad de semillas a utilizar en el semillerio, podrian ser 50 o 100 para mayor estabilidad
 PARAM$semilla_primos  <- 262139  # se utiliza para generar el vector de  PARAM$semillerio  semillas
 
