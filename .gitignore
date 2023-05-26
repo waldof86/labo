@@ -1,5 +1,11 @@
-#wal
-*.RData
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
+
 
 #Archivos que considero datasets grandes, lastima que git no lo permita nativamente
 *.csv
