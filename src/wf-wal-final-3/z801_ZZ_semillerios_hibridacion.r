@@ -24,8 +24,7 @@ require("yaml")
 PARAM  <- list()
 PARAM$experimento  <- "WAL_ZZ_03Hyb"
 
-PARAM$exp_input  <- c( "WAL_ZZ_03-01", "WAL_ZZ_03-02", "WAL_ZZ_03-03", "WAL_ZZ_03-04", "WAL_ZZ_03-05"
-  , "WAL_ZZ_03-06", "WAL_ZZ_03-07", "WAL_ZZ_03-08", "WAL_ZZ_03-09", "WAL_ZZ_03-10",  )  # el inpput deben ser semillerios
+PARAM$exp_input  <- c( "WAL_ZZ_03","WAL_ZZ_02","WAL_ZZ_01")  # el inpput deben ser semillerios
 
 PARAM$kaggle$envios_desde  <-  9500L
 PARAM$kaggle$envios_hasta  <- 11500L
@@ -325,9 +324,9 @@ cat( format(Sys.time(), "%Y%m%d %H%M%S"),"\n",
 # sino Google me sigue facturando a pesar de no estar procesando nada
 # Give them nothing, but take from them everything.
 
-system( "sleep 10  &&
-        export NAME=$(curl -X GET http://metadata.google.internal/computeMetadata/v1/instance/name -H 'Metadata-Flavor: Google') &&
-        export ZONE=$(curl -X GET http://metadata.google.internal/computeMetadata/v1/instance/zone -H 'Metadata-Flavor: Google') &&
-        gcloud --quiet compute instances delete $NAME --zone=$ZONE",
-        wait= FALSE )
+# system( "sleep 10  &&
+#         export NAME=$(curl -X GET http://metadata.google.internal/computeMetadata/v1/instance/name -H 'Metadata-Flavor: Google') &&
+#         export ZONE=$(curl -X GET http://metadata.google.internal/computeMetadata/v1/instance/zone -H 'Metadata-Flavor: Google') &&
+#         gcloud --quiet compute instances delete $NAME --zone=$ZONE",
+#         wait= FALSE )
  
