@@ -24,7 +24,7 @@ require("yaml")
 PARAM  <- list()
 PARAM$experimento  <- "WAL_ZZ_04Hyb"
 
-PARAM$exp_input  <- c( "WAL_ZZ_04","WAL_ZZ_03","WAL_ZZ_02","WAL_ZZ_01")  # el inpput deben ser semillerios
+PARAM$exp_input  <- c( "WAL_ZZ_04","WAL_ZZ_02","WAL_ZZ_01")  # el inpput deben ser semillerios
 
 PARAM$kaggle$envios_desde  <-  9500L
 PARAM$kaggle$envios_hasta  <- 11500L
