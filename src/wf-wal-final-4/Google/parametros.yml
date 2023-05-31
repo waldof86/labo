@@ -1,0 +1,13 @@
+experimento: WAL_ZZ_04Hyb
+exp_input:
+- WAL_ZZ_04
+- WAL_ZZ_02
+- WAL_ZZ_01
+kaggle:
+  envios_desde: 9500
+  envios_hasta: 11500
+  envios_salto: 500
+graficar:
+  envios_hasta: 20000
+  ventana_suavizado: 2001
+home: ~/buckets/b1/

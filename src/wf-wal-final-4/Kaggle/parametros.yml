@@ -1,0 +1,13 @@
+experimento: WAL_ZZ_04
+exp_input: WAL_HT_03
+modelos_rank: 1.0
+semillerio: 200.0
+semilla_primos: 262139.0
+kaggle:
+  envios_desde: 8000
+  envios_hasta: 13500
+  envios_salto: 500
+graficar:
+  envios_hasta: 20000
+  ventana_suavizado: 2001
+home: ~/buckets/b1/
